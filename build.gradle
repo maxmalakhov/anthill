@@ -17,6 +17,11 @@ repositories {
 dependencies {
     compile 'org.mongodb:mongo-java-driver:2.11.4'
     compile 'com.google.guava:guava:16.0.1'
+    compile 'org.springframework:spring-core:4.0.3.RELEASE'
+    compile 'org.springframework:spring-context:4.0.3.RELEASE'
+    compile 'org.springframework:spring-aop:4.0.3.RELEASE'
+    compile 'org.aspectj:aspectjrt:1.7.4'
+    compile 'org.aspectj:aspectjweaver:1.7.4'
     compile 'ch.qos.logback:logback-classic:1.1.2'
     compile 'org.slf4j:slf4j-api:1.7.7'
     testCompile 'org.testng:testng:6.8.8'

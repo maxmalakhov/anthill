@@ -11,6 +11,6 @@ public class AppTest {
     @Test
     public void testApp() {
         App app = new App();
-        app.run();
+        app.engine().run();
     }
 }

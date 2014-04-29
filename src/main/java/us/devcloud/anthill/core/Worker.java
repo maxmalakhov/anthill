@@ -2,6 +2,9 @@ package us.devcloud.anthill.core;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -9,6 +12,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 /**
  * Created by max on 19/04/14.
  */
+@Component
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class Worker implements Runnable {
 
     final static Logger logger = LoggerFactory.getLogger(Worker.class);
@@ -17,6 +22,10 @@ public class Worker implements Runnable {
     private WorkerType type;
     private WorkerState state;
     private Target target;
+
+    public Worker() {
+
+    }
 
     public Worker(String name, Target target) {
         this.name = name;
@@ -67,7 +76,13 @@ public class Worker implements Runnable {
         return name;
     }
 
-    public void setTarget(Target target) {
+    public Worker addTarget(Target target) {
         this.target = target;
+        return this;
+    }
+
+    public Worker addName(String name) {
+        this.name = name;
+        return this;
     }
 }

@@ -2,10 +2,11 @@ package us.devcloud.anthill;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import us.devcloud.anthill.core.FactoryType;
-import us.devcloud.anthill.core.Target;
-import us.devcloud.anthill.core.Worker;
-import us.devcloud.anthill.core.WorkerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import us.devcloud.anthill.config.SpringConfig;
+import us.devcloud.anthill.core.*;
+import us.devcloud.anthill.network.Sender;
 
 /**
  * Hello world!
@@ -14,23 +15,23 @@ import us.devcloud.anthill.core.WorkerFactory;
 public class App {
 
     final static Logger logger = LoggerFactory.getLogger(App.class);
+    final static ApplicationContext spring = new AnnotationConfigApplicationContext(SpringConfig.class);
 
-    public void run() {
-        WorkerFactory factory = new WorkerFactory(FactoryType.FIXED);
-        Target target = new Target();
-        logger.debug(target.toString());
-        try {
+    public static Sender sender() {
+        return spring.getBean(Sender.class);
+    }
+    public static Engine engine() {
+        return spring.getBean(Engine.class);
+    }
+    public static Worker worker() {
+        return spring.getBean(Worker.class);
+    }
+    public static Worker worker(String name, Target target) {
+        return (Worker) spring.getBean(Worker.class.getName(), name, target);
+    }
 
-            factory.start(new Worker("worker1", target));
-            factory.start(new Worker("worker2", target));
-            factory.start(new Worker("worker3", target));
-            factory.stop();
-
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            logger.debug(target.toString());
-        }
+    public static void main(String[] args) {
+        App app = new App();
+        app.engine().run();
     }
 }
