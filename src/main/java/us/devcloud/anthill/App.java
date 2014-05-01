@@ -23,8 +23,9 @@ public class App {
     public static Engine engine() {
         return spring.getBean(Engine.class);
     }
-    public static Worker worker() {
-        return spring.getBean(Worker.class);
+    public static WorkerBean worker() {
+        WorkerBean bean = (WorkerBean) spring.getBean("myWorker");
+        return bean;
     }
     public static Worker worker(String name, Target target) {
         return (Worker) spring.getBean(Worker.class.getName(), name, target);

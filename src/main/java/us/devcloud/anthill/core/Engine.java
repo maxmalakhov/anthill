@@ -24,9 +24,9 @@ public class Engine {
 //            factory.start(App.worker("worker1", target));
 //            factory.start(App.worker("worker2", target));
 //            factory.start(App.worker("worker3", target));
-            factory.start(App.worker().addName("worker1").addTarget(target));
-            factory.start(App.worker().addName("worker2").addTarget(target));
-            factory.start(App.worker().addName("worker3").addTarget(target));
+            factory.start(((Worker)App.worker()).addName("worker1").addTarget(target));
+//            factory.start(App.worker().addName("worker2").addTarget(target));
+//            factory.start(App.worker().addName("worker3").addTarget(target));
             factory.stop();
 
             Thread.sleep(2000);

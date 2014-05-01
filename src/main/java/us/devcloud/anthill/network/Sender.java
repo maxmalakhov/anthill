@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class Sender {
 
-//    @Before("execution(* us.devcloud.anthill.core.Worker.run(..))")
-//    public void doBefore(JoinPoint joinPoint) {
-//        System.out.println("***AspectJ*** DoBefore() is running!! intercepted : " + joinPoint.getSignature().getName());
-//    }
+    @Before("execution(* us.devcloud.anthill.core.Worker.run(..))")
+    public void doBefore(JoinPoint joinPoint) {
+        System.out.println("***AspectJ*** DoBefore() is running!! intercepted : " + joinPoint.getSignature().getName());
+    }
 
 
     @Before("execution(* us.devcloud.anthill.core.Engine.run(..))")

@@ -6,15 +6,12 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-
 /**
  * Created by max on 19/04/14.
  */
-@Component
+@Component("myWorker")
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class Worker implements Runnable {
+public class Worker implements Runnable, WorkerBean {
 
     final static Logger logger = LoggerFactory.getLogger(Worker.class);
 
